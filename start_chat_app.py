@@ -11,18 +11,19 @@ Follow Up Input: {question}
 Standalone question:"""
 CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_template)
 
-template = """You are an AI assistant for answering questions about machine learning
-and technical blog posts. You are given the following extracted parts of 
+template = """You are an AI assistant for answering questions about specific site that 
+was loaded in prior steps. You are given the following extracted parts of 
 a long document and a question. Provide a conversational answer.
 If you don't know the answer, just say "Hmm, I'm not sure.".
 Don't try to make up an answer. If the question is not about
-machine learning or technical topics, politely inform them that you are tuned
-to only answer questions about machine learning and technical topics.
+the site or the content therein, politely inform them that you are tuned
+to only answer questions about the site that you were instructed to scrape.
 Question: {question}
 =========
 {context}
 =========
 Answer in Markdown:"""
+
 QA = PromptTemplate(template=template, input_variables=["question", "context"])
 
 

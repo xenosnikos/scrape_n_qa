@@ -3,6 +3,7 @@ import pickle
 import requests
 import xmltodict
 
+
 from bs4 import BeautifulSoup
 from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
@@ -17,11 +18,12 @@ def extract_text_from(url):
     lines = (line.strip() for line in text.splitlines())
     return '\n'.join(line for line in lines if line)
 
+url_to_scrape = 'https://www.paepper.com/sitemap.xml'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Embedding website content')
     parser.add_argument('-s', '--sitemap', type=str, required=False,
-            help='URL to your sitemap.xml', default='https://www.paepper.com/sitemap.xml')
+            help='URL to your sitemap.xml', default=url_to_scrape)
     parser.add_argument('-f', '--filter', type=str, required=False,
             help='Text which needs to be included in all URLs which should be considered',
             default='https://www.paepper.com/blog/posts')
